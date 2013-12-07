@@ -1,0 +1,10 @@
+Used Pip to install tornado and git
+Created folder and git repo for assignment
+Because I will only be using the Semantic UI docs, created a submodule in the project for the gh-pages branch of the Semantic UI repo within my repo's folder
+Ran through Tornado HelloWorld
+Ran into issues with pathing when trying to locate Tornado script outside of content directory
+Fixed issue by moving script and then set up hadnlers for the static files. Tornado has a built in static file handler, but use looks like it would require altering the SemanticUI directory structure (put everything in a "static" folder
+Revisited the static issue and tried just setting static path to the main "./" directory. Everything works.
+Statics declared in the settings seemed to stop working, so I switched back to handling them explicitly
+RegEx was causing the majority of the routing problems. Entire site is now functional. FF does not show a favicon, but Tornado isn't returning errors and the favicon is explicitly declared.
+Committing and moving on to Selenium, will return to fine tune if needed.
