@@ -8,3 +8,4 @@ Revisited the static issue and tried just setting static path to the main "./" d
 Statics declared in the settings seemed to stop working, so I switched back to handling them explicitly
 RegEx was causing the majority of the routing problems. Entire site is now functional. FF does not show a favicon, but Tornado isn't returning errors and the favicon is explicitly declared.
 Committing and moving on to Selenium, will return to fine tune if needed.
+Issues with committing. Wasn't sure about committing the submodule with basic.py inside. Couldn't get a definitive answer on whether it would affect the master upstream. Made a quick change to basic.py and relocated it to my Assignment directory where its no porblem.
