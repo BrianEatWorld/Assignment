@@ -18,3 +18,9 @@ Created manual test that covers the MainContentHandler.
 Added a javascript editor to break a link handled by MainContentHandler. The test then checks to see that the error is properly handled and sent toa  pretty 404 page.
 Moved testTest and tornado subprocess out of setup.py and in testMain.py.
 Tried running concurrent nosetests, but Tornado process generates a socket error. Need to find a way to have multiple instances of Tornado before it will work.
+testSubMain is very similar to testMain, it just adds in the subdirectory component.
+testCatchAll is also pretty basic. The one potential issue is that it actuyally tests more than just catchAll. It ends up testing the 404 code for subMain and Main as well, but its seemed more thorough to do it this way. 
+testStatic is turning out to be fairly complex. The question is whether to test the static items in the same was as the subMain and Main, where the test looks to see if something exists. However, it seems the more thorough route would be to test that the items are also rendering properly on the page. Similarly, testing the download may cause problems due to behavior differences between FF and Chrome, as Chrome has no popup to use with checkForALert.
+Another way to test the static files might be the captureNetworkTraffic method. However, it looks like this may have limited support.
+Ran into issues with testSubMain, where is can't see the element I need to click. Went back to work on setup.py while thinking it over.
+Issues with setup.py are caused by my lack of __init__.py in the package directories.

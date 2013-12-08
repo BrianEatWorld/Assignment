@@ -4,16 +4,17 @@ import logging
 import os
 import tornado.ioloop
 import tornado.web
+import sys
 
 logging.basicConfig(level=logging.DEBUG)
 
-directory="semanticUIDocs/"
+directory="./semanticUIDocs/"
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.render(directory + 'index.html')
 
-
+# Covered by testMain. This hits and item located in paths[] and the 404 via a malformed url.
 class MainContentHandler(tornado.web.RequestHandler):
     def get(self, path):
     	logging.info(path)
@@ -47,7 +48,7 @@ class CatchAllHandler(tornado.web.RequestHandler):
 			self.set_status(404)
 
 settings = {
-    "static_path": os.path.join(os.path.dirname(__file__), directory ),
+    # "static_path": os.path.join(os.path.dirname(__file__), directory ),
     "debug":True,
 }
 
@@ -59,7 +60,7 @@ application = tornado.web.Application([
     (r"/build/(.*)",tornado.web.StaticFileHandler,{"path":directory + "build"},),
     (r"/stylesheets/(.*)",tornado.web.StaticFileHandler,{"path":directory + "stylesheets"},),
     (r"/images/(.*)",tornado.web.StaticFileHandler,{"path":directory + "images"},),
-    (r"/(favicon.ico)",tornado.web.StaticFileHandler,{"path":directory + "favicon.ico"},),
+    (r"/(favicon.ico)",tornado.web.StaticFileHandler,{"path":directory},),
     (r".*", CatchAllHandler),
     ])
 

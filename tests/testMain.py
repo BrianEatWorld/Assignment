@@ -11,7 +11,7 @@ class semanticMain(unittest.TestCase):
 	def setUp(self):
 		self.driver = webdriver.Firefox()
 		try:
-			self.basicTornado = subprocess.Popen(["python","./basic.py"])
+			self.basicTornado = subprocess.Popen(["python","./assignment/basic.py"])
 		except:
 			logging.info("error occured on start, killing")
 			self.basicTornado.kill()
