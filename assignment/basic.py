@@ -48,7 +48,7 @@ class CatchAllHandler(tornado.web.RequestHandler):
 			self.set_status(404)
 
 settings = {
-    # "static_path": os.path.join(os.path.dirname(__file__), directory ),
+    "static_path": os.path.join(os.path.dirname(__file__), directory ),
     "debug":True,
 }
 
@@ -56,14 +56,15 @@ application = tornado.web.Application([
     (r"/", MainHandler),
     (r"/(\w+).html", MainContentHandler),
     (r"/(\w+)/(\w+).html", SubContentHandler),
-    (r"/javascript/(.*)",tornado.web.StaticFileHandler,{"path":directory + "javascript"},),
-    (r"/build/(.*)",tornado.web.StaticFileHandler,{"path":directory + "build"},),
-    (r"/stylesheets/(.*)",tornado.web.StaticFileHandler,{"path":directory + "stylesheets"},),
-    (r"/images/(.*)",tornado.web.StaticFileHandler,{"path":directory + "images"},),
+    (r"/javascript/(.*)",tornado.web.StaticFileHandler,{"path":os.path.join(os.path.dirname(__file__), directory) + "javascript/"},),
+    (r"/build/(.*)",tornado.web.StaticFileHandler,{"path":os.path.join(os.path.dirname(__file__), directory) + "build/"},),
+    (r"/stylesheets/(.*)",tornado.web.StaticFileHandler,{"path":os.path.join(os.path.dirname(__file__), directory) + "stylesheets/"},),
+    (r"/images/(.*)",tornado.web.StaticFileHandler,{"path":os.path.join(os.path.dirname(__file__), directory) + "images/"},),
     (r"/(favicon.ico)",tornado.web.StaticFileHandler,{"path":directory},),
     (r".*", CatchAllHandler),
     ])
 
 if __name__ == "__main__":
+    logging.info("Path:"+os.path.join(os.path.dirname(__file__), directory ))
     application.listen(8888)
     tornado.ioloop.IOLoop.instance().start()
