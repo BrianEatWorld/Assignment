@@ -9,3 +9,12 @@ Statics declared in the settings seemed to stop working, so I switched back to h
 RegEx was causing the majority of the routing problems. Entire site is now functional. FF does not show a favicon, but Tornado isn't returning errors and the favicon is explicitly declared.
 Committing and moving on to Selenium, will return to fine tune if needed.
 Issues with committing. Wasn't sure about committing the submodule with basic.py inside. Couldn't get a definitive answer on whether it would affect the master upstream. Made a quick change to basic.py and relocated it to my Assignment directory where its no porblem.
+One change to make to basic.py is to rewrite us os.path joins exclusively, rather than the current mix.
+While working on Selenium, noted that there are three different ways to locate elements with selenium. 
+Installed nosetests and have it running with basic selenium script (opens Google and checks page title for "Google").
+Started writing tests by hand, building off the basic script previously mentioned. Realized it might be faster to record them using the IDE and then generate the tests automatically.
+Automatic generation keeps failing due to invisible elements. However, the elements look to be visible and can be clicked. Switching back to manual creation.
+Created manual test that covers the MainContentHandler.
+Added a javascript editor to break a link handled by MainContentHandler. The test then checks to see that the error is properly handled and sent toa  pretty 404 page.
+Moved testTest and tornado subprocess out of setup.py and in testMain.py.
+Tried running concurrent nosetests, but Tornado process generates a socket error. Need to find a way to have multiple instances of Tornado before it will work.

@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 import logging
 import os
 import tornado.ioloop
@@ -18,6 +20,7 @@ class MainContentHandler(tornado.web.RequestHandler):
         paths = ("collection", "download","element", "introduction","module","playground","test")
         if not path: path = "index"
         if path not in paths:
+            self.render(directory + '404.html')
             raise tornado.web.HTTPError(404)
         logging.info(directory + path + ".html")
         self.render(directory + path + ".html")
@@ -28,6 +31,7 @@ class SubContentHandler(tornado.web.RequestHandler):
     	logging.info(path)
         folders = ("collections","draft","elements","guide","introduction","modules","overrides","project","spec","views")
         if folder not in folders:
+            self.render(directory + '404.html')
             raise tornado.web.HTTPError(404)
         logging.info(directory + folder +"/"+ path + ".html")
         self.render(directory + folder +"/"+ path + ".html")
