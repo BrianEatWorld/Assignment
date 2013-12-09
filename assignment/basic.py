@@ -60,7 +60,7 @@ application = tornado.web.Application([
     (r"/build/(.*)",tornado.web.StaticFileHandler,{"path":os.path.join(os.path.dirname(__file__), directory) + "build/"},),
     (r"/stylesheets/(.*)",tornado.web.StaticFileHandler,{"path":os.path.join(os.path.dirname(__file__), directory) + "stylesheets/"},),
     (r"/images/(.*)",tornado.web.StaticFileHandler,{"path":os.path.join(os.path.dirname(__file__), directory) + "images/"},),
-    (r"/(favicon.ico)",tornado.web.StaticFileHandler,{"path":directory},),
+    (r"/(favicon.ico)",tornado.web.StaticFileHandler,{"path":os.path.join(os.path.dirname(__file__), directory)},),
     (r".*", CatchAllHandler),
     ])
 

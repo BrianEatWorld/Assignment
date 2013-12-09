@@ -1,6 +1,8 @@
 import nose
 import unittest
 import subprocess
+# from ghost import Ghost
+
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -15,7 +17,7 @@ class semanticMain(unittest.TestCase):
 		try:
 			self.basicTornado = subprocess.Popen(["python","./assignment/basic.py"])
 		except:
-			logging.info("error occured on start, killing")
+			self.logging.info("error occured on start, killing")
 			self.basicTornado.kill()
 
 	def test_Download(self):
@@ -32,6 +34,12 @@ class semanticMain(unittest.TestCase):
 			alExists = False
 
 		alert = self.assertTrue(alExists)
+		
+# Currently, non-functioning attempt at screenshotter and static resource check
+	# def test_StaticResponses(self):
+	# 	baseurl = "localhost:8888/"
+	# 	ghostDriver = Ghost()
+	# 	page, resources = ghostDriver.open(baseurl)
 
 
 	def tearDown(self):
