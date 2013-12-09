@@ -21,7 +21,7 @@ class semanticMain(unittest.TestCase):
 		driver = self.driver
 		driver.get(baseurl)
 		self.assertIn("Introduction", driver.title)
-		driver.find_element_by_xpath('//*[@id="menu"]/div[4]/div/a[5]').click()
+		driver.find_element_by_css_selector('a.ui:nth-child(4)').click()
 		# driver.find_element_by_css_selector('div.item:nth-child(6) > div:nth-child(2) > a:nth-child(1)').click()
 		driver.find_element_by_link_text("Breadcrumb").click()
 		self.assertIn("Breadcrumb | Semantic UI", driver.title)

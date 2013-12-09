@@ -24,3 +24,7 @@ testStatic is turning out to be fairly complex. The question is whether to test 
 Another way to test the static files might be the captureNetworkTraffic method. However, it looks like this may have limited support.
 Ran into issues with testSubMain, where is can't see the element I need to click. Went back to work on setup.py while thinking it over.
 Issues with setup.py are caused by my lack of __init__.py in the package directories.
+Setting up the packages meant moving the directory controlled by the submodule. THis caused problems with git. The submodule was removed and then recreated int he new directory.
+The folders for packaging also seemed to break the testing scripts. Running the tornado server separately from the tests worked fine, but running the server as a subprocess was causing all the static files to 404. The issue seemed to be related to the fact that running the server directly means that python is ina  different directory than when running the subprocess for the tests. Adding the __file__ path to the paths for the staticFileHandler seemed to fix the problem.
+Fixed the problem with the final test, subMain. I misdiagnosed the issue earlier, thinking it was a shortcoming in Selenium, caused by page height. It turns out it was because the Selenium call before it was failing. I made the mistake of trying to use xpath. Switching to CSS selectors solvede the problem and now 100% of the handlers are covered by tests.
+The next step is to try to expand on the staticHandler tests, to account for rendering issues.
