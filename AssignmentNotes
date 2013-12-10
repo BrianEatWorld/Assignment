@@ -42,6 +42,8 @@ Couldn't get ghosts.py to work properly. The driver initializes, opens the brows
 {remove half written lines and commented remnants} Removed
 {restructure testStatic alert check} Dropped the excess variable ("alert") and catch the specific exception for which the test should be looking
 Other bugs fixed include switching the way settings are established in TOrnado script, original method was failing silently. Made Handlers more Pythonic by dropping the explicit paths in favor of a try/except framework that will render and found pages and then render 404 if nothing is in directory. Changed the 404 errors so that instead of raising the error, the 404 page is displayed and the status is set to 404.
+{swap PyTest for Nose} Changed the import and setup.py to accomdate PyTest. This change also involved renaming the tests. THe previous file names did not actually meet the proper rules for test discovery.
+
 To Do: {swap PyTest for Nosetests,convert remaing relative paths, look into entry points, meet other PEP8 standards, look into Tornado package tests, find a better way to handle/explicitly catch errors where tornado has trouble starting in the test scripts}
 
 
