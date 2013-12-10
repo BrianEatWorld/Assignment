@@ -15,7 +15,7 @@ test_requires = [
 def get_package_data(dir):
     root = 'assignment/'
     paths = [p.replace(root, '') for p, _, f in walk(root + dir) if f]
-    extensions = ['html', 'js', 'coffee', 'css', 'less', 'xml', 'txt', 'png', 'jpg', 'jpeg', 'gif']
+    extensions = ['html', 'js', 'css', 'less', 'xml', 'txt', 'png', 'jpg', 'jpeg', 'gif']
     return [join(path, '*.' + ext) for path in paths for ext in extensions]
 
 setup(name='Assignment',

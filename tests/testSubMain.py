@@ -6,15 +6,15 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 
-class semanticMain(unittest.TestCase):
+class semanticSubMain(unittest.TestCase):
 
 	def setUp(self):
 		self.driver = webdriver.Firefox()
 		try:
-			self.basicTornado = subprocess.Popen(["python","./assignment/basic.py"])
+			self.basic_tornado = subprocess.Popen(["python","./assignment/basic.py"])
 		except:
 			logging.info("error occured on start, killing")
-			self.basicTornado.kill()
+			self.basic_tornado.kill()
 
 	def test_subMain(self):
 		baseurl = "localhost:8888"
@@ -33,7 +33,7 @@ class semanticMain(unittest.TestCase):
 
 	def tearDown(self):
 		self.driver.close()
-		self.basicTornado.kill()
+		self.basic_tornado.kill()
 
 if __name__ == '__main__':
     nose.main()

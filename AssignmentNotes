@@ -32,3 +32,16 @@ Initial attempts at setup.py were problemetic. I believe it has been fixed now b
 Expanding on the current program, I think it is more important to increase the test feature set. I am going to try integrating phantomJS. This will be added as a submodule, since it isn't a Python package, but it can be driven by Selenium. It does mean the path will have to be specified from within the tests.
 Some experimentation and PhantomJS doesn't seem like its going to work in time. Going to swap to ghosts.py.
 Couldn't get ghosts.py to work properly. The driver initializes, opens the browser, but faisl to navigate to the given url.
+{received comments}
+{basic.py declared global variables} moved variables to the __main__ block which then calls main(), which accepts two variables: the directory for the site and the port it will run on. None of the test scripts used globals.
+{use PEP8 variable names) swapped variable names in basic.py and tests to names with _ and not camel case.
+{use join or format instead of + for string concart} basic.py was the only code with concats, switched to ''.join([]) style. None of the text seemed to fit the formatting use case.
+{DRY out the code} Eliminated a good deal of repeition. Established http_error and working_directory variables to cover commonly used paths. The five staticHandlers are still explicitly written becaause alternative methods still fail. 
+{Don't use relative pathing}Fixed relative pathing in basic.py, but some still needs to be addressed in the subprocess calls in the tests. Those calls are why tests fail unless called from the root directory.
+{logging call doesn't belong in module} Moved logging config to __main__
+{remove half written lines and commented remnants} Removed
+{restructure testStatic alert check} Dropped the excess variable ("alert") and catch the specific exception for which the test should be looking
+Other bugs fixed include switching the way settings are established in TOrnado script, original method was failing silently. Made Handlers more Pythonic by dropping the explicit paths in favor of a try/except framework that will render and found pages and then render 404 if nothing is in directory. Changed the 404 errors so that instead of raising the error, the 404 page is displayed and the status is set to 404.
+To Do: {swap PyTest for Nosetests,convert remaing relative paths, look into entry points, meet other PEP8 standards, look into Tornado package tests, find a better way to handle/explicitly catch errors where tornado has trouble starting in the test scripts}
+
+
