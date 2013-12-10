@@ -8,7 +8,7 @@ install_requires = [
 ]
 
 test_requires = [
-'nose',
+'pytest',
 'selenium',
 ]
 

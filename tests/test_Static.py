@@ -1,4 +1,4 @@
-import nose
+import pytest
 import unittest
 import subprocess
 
