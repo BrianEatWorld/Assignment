@@ -1,16 +1,8 @@
 #! /usr/bin/python
 from os.path import join
 from os import walk
-from setuptools import setup,find_packages
+from setuptools import setup, find_packages
 
-install_requires = [
-'tornado',
-]
-
-test_requires = [
-'pytest',
-'selenium',
-]
 
 def get_package_data(dir):
     root = 'assignment/'
@@ -24,5 +16,7 @@ setup(name='Assignment',
       author='Brian Dorn',
       author_email='bdorn@rmn.com',
       packages=find_packages(),
-      package_data={'assignment':get_package_data('semanticUIDocs')},
+      package_data={'assignment': get_package_data('semanticUIDocs')},
+      install_requires=['tornado', ],
+      test_requires=['pytest', 'selenium', ]
       )
