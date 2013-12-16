@@ -1,3 +1,4 @@
+import logging
 import pytest
 import unittest
 import subprocess
@@ -9,9 +10,10 @@ from selenium.webdriver.common.keys import Keys
 class semanticCatchAll(unittest.TestCase):
 
 	def setUp(self):
-		self.driver = webdriver.Firefox()
 		try:
+			self.driver = webdriver.Firefox()
 			self.basic_tornado = subprocess.Popen(["python","./assignment/basic.py"])
+			logging.info(''.join(["Tornado PID: ",basic_tornado.pid])) 
 		except:
 			logging.info("error occured on start, killing")
 			self.basic_tornado.kill()
@@ -30,4 +32,4 @@ class semanticCatchAll(unittest.TestCase):
 		self.basic_tornado.kill()
 
 if __name__ == '__main__':
-    nose.main()
+    pytest.main()
