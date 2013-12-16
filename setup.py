@@ -8,6 +8,7 @@ install_requires = [
 ]
 
 test_requires = [
+'requests',
 'pytest',
 'selenium',
 ]
