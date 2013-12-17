@@ -2,20 +2,32 @@ import logging
 import pytest
 import unittest
 import subprocess
+import time
+import requests
 
 from selenium import webdriver
 
+logging.basicConfig(level='INFO')
 
-class semanticCatchAll(unittest.TestCase):
+class main(unittest.TestCase):
 
     def setUp(self):
-        try:
-            self.driver = webdriver.Firefox()
-            self.basic_tornado = subprocess.Popen(["python", "./assignment/basic.py"])
-            logging.info(''.join(["Tornado PID: ", basic_tornado.pid]))
-        except:
-            logging.info("error occured on start, killing")
-            self.basic_tornado.kill()
+        url = "http://localhost:8888"
+        timeout = 10
+        interval = 1
+        self.basic_tornado = subprocess.Popen(["start-tornado"])
+        logging.info("Waiting for 2XX response from:", url)
+        for _ in range(int(timeout/interval)):
+            try:
+                logging.info('attempting request')
+                assert str(requests.get(url))
+                self.driver = webdriver.Firefox()
+                return
+            except:
+                logging.info('request failed')
+                time.sleep(int(interval))
+        logging.info('Unable to access tornado, killing. Check settings and try again.')
+        self.basic_tornado.kill()
 
     def test_catchAll(self):
         baseurl = "localhost:8888/"

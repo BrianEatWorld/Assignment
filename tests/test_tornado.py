@@ -1,15 +1,16 @@
-import logging
 import pytest
 import unittest
 import subprocess
-import time
 import requests
+import time
+import logging
+import time
 
 from selenium import webdriver
 
 
-# Because this is testing rendering, it may be a good idea to have it run using multiple drivers.
-# I.E. Have a Chrome and FIrefox version of the test.
+logging.basicConfig(level='INFO')
+
 class main(unittest.TestCase):
 
     def setUp(self):
@@ -30,21 +31,11 @@ class main(unittest.TestCase):
         logging.info('Unable to access tornado, killing. Check settings and try again.')
         self.basic_tornado.kill()
 
-    def test_Download(self):
-        baseurl = "localhost:8888/"
+    def test_tornado_up(self):
+        baseurl = "http://localhost:8888"
         driver = self.driver
         driver.get(baseurl)
-        #First test checks to see that the "Download" for "Build" works properly
         self.assertIn("Introduction", driver.title)
-        driver.find_element_by_css_selector("a.red").click()
-        self.driver.switch_to_alert()
-        try:
-            self.driver.switch_to_alert()
-            alExists = True
-        except NoAlertPresentException:
-            alExists = False
-
-        self.assertTrue(alExists)
 
     def tearDown(self):
         self.driver.close()
