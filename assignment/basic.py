@@ -58,9 +58,17 @@ def main(directory, port):
 
     application.listen(port)
 
+def start_tornado():
+    logging.basicConfig(level=logging.DEBUG)
+    directory = "./semanticUIDocs/"
+    port = 8888
+    main(directory, port)
+    tornado.ioloop.IOLoop.instance().start()
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     directory = "./semanticUIDocs/"
     port = 8888
     main(directory, port)
     tornado.ioloop.IOLoop.instance().start()
+    
