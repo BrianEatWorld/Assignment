@@ -18,6 +18,6 @@ setup(name='Assignment',
       packages=find_packages(),
       package_data={'assignment': get_package_data('semanticUIDocs')},
       install_requires=['tornado', ],
-      test_requires=['requests', 'pytest', 'selenium', ],
+      tests_require=['requests', 'pytest', 'selenium', ],
       entry_points={'console_scripts': ['start-tornado = assignment.basic:start_tornado']},
       )
